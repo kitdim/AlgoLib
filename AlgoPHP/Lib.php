@@ -6,7 +6,7 @@ class SearchLib
         $last = $arr[$countArr];
         $arr[$countArr] = $searchValue;
         $i = 0;
-        $result = "not found";
+        $result = "<br />not found";
 
         while ($arr[$i] != $searchValue)
         {
@@ -16,7 +16,7 @@ class SearchLib
         $arr[$countArr] = $last;
 
         if ($i<$countArr || $arr[$countArr] == $searchValue){
-            $result = "Найдено";
+            $result = "<br />Найдено";
             return $result;
         }
         return $result;
