@@ -21,4 +21,16 @@ class SearchLib
         }
         return $result;
     }
+    static function RecursLinearSearch(array $arr, float $countArr, int $index, float $searchValue): string
+    {
+        if ($index > $countArr)
+            return "<br />Not found";
+        elseif ($index <= $countArr || $arr[$index] == $searchValue)
+            return "Found: {$arr[$index]}, by array index {$index}";
+        elseif ($index <= $countArr || $arr[$index] != $searchValue)
+            return self::RecursLinearSearch($arr, $countArr, $index + 1, $searchValue);
+        else
+            return "<br />Not found";
+
+    }
 }
