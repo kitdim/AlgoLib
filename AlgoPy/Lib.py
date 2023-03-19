@@ -27,3 +27,23 @@ class SearchLib:
             return self.RecursLinearSearch(arr, count, index + 1, search_value)
         else:
             return result
+
+    def BinarySearch(self, arr, count, search_value):
+        p = 1
+        r = count
+        while p <= r:
+            q = (p + r) // 2
+            print(f"p = {p}\tq = {q}\tr = {r}")
+            if (arr[q] == search_value):
+                print("A line")
+                return f"Found: {arr[q]}"
+            if (arr[q] != search_value):
+                print("В line")
+                if (arr[q] > search_value):
+                    print("C line")
+                    r = q - 1
+            if (arr[q] < search_value):
+                print("D line")
+                r = q + 1
+            input()
+        return "Not found"
