@@ -33,4 +33,21 @@ class SearchLib
             return "<br />Not found";
 
     }
+    static function BinaryFunction(array $arr, float $countArr, float $searchValue) : string
+    {
+        $lowIndex = 0;
+        $highIndex = $countArr;
+
+        while ($lowIndex <= $highIndex)
+        {
+            $middleIndex = round(($lowIndex + $highIndex) / 2);
+
+            if ($arr[$middleIndex] == $searchValue)
+                return "<br/ > Found";
+            elseif ($arr[$middleIndex] > $searchValue)
+                $highIndex = $middleIndex - 1;
+            else $lowIndex = $middleIndex + 1;
+        }
+        return "<br/>Not found";
+    }
 }
