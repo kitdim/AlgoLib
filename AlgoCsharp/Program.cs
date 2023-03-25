@@ -5,16 +5,20 @@ class Program
     {
         while (true)
         {
-            Console.SetCursorPosition(40, 0);
+            Console.SetCursorPosition(30, 0);
             Console.WriteLine("Алгоритмы поиска: ");
+            Console.SetCursorPosition(30, 1);
             Console.WriteLine("1. Линейный поиск");
+            Console.SetCursorPosition(30, 2);
             Console.WriteLine("2. Рекурсивно-линейный поиск");
+            Console.SetCursorPosition(30, 3);
             Console.WriteLine("3. Бинарный поиск (в отсортированном массиве)");
 
             Console.SetCursorPosition(0, 0);
-            Console.Write("Выберите нужный алгоритм:");
-            var input = Convert.ToInt32(Console.ReadKey());
+            Console.Write("Выберите нужный алгоритм: ");
+            var input = Convert.ToInt32(Console.ReadLine());
 
+            Console.SetCursorPosition(0, 5);
             switch (input)
             {
                 case 1:
@@ -56,16 +60,18 @@ class Program
 
                 case 3:
                     #region Бинарный поиск
-                    Double[] arrBinary = new Double[10];
-                    Int32 countArrBinary = arrBinary.Length;
+                    List<int> arrBinary = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-                    foreach (int elem in arrBinary)
-                        arrBinary[elem] = elem;
-                    foreach (int elem in arrBinary)
+
+                    foreach (var elem in arrBinary)
+                    {
                         Console.Write($"{elem} ");
-                    var seachValBinary = Convert.ToDouble(Console.ReadLine());
+                    }
 
-                    SeachLib.BinarySearch(arrBinary, countArrBinary - 1, seachValBinary);
+                    Console.Write("\nВведите число: ");
+                    var seachValBinary = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine(SeachLib.BinarySearch(arrBinary, seachValBinary));
                     break;
                 default:
                     Console.WriteLine("Не найдено такого алгоритма.");
@@ -73,6 +79,8 @@ class Program
                     #endregion
             }
 
+            Console.ReadKey();
+            Console.Clear();
         }
 
     }

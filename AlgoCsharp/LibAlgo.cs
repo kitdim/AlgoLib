@@ -39,4 +39,24 @@
         }
         return result;
     }
+    public static string BinarySearch(IList<int> list, int item)
+    {
+        var lowIndex = 0;
+        var highIndex = list.Count() - 1;
+
+        while (lowIndex <= highIndex)
+        {
+            var midIndex = (lowIndex + highIndex) / 2;
+            var guess = list[midIndex];
+
+            if (guess == item) 
+                return $"Succses.";
+
+            if (guess > item)
+                highIndex = midIndex - 1;
+            else
+                lowIndex = midIndex + 1;
+        }
+        return "Not found";
+    }
 }
