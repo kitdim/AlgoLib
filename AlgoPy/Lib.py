@@ -43,3 +43,16 @@ class SearchLib:
                 low_index = middle_index + 1
 
         return "Not found."
+
+    def BinarySearchRec(self, arr, low_index, high_index, search_val):
+        if (low_index > high_index):
+            return "Not found"
+        else:
+            middle_index = (low_index + high_index) // 2
+            if(arr[middle_index] == search_val):
+                return "Succes."
+            elif(arr[middle_index] > search_val):
+                return self.BinarySearchRec(arr, low_index, high_index - 1, search_val)            
+            else:
+                 return self.BinarySearchRec(arr, low_index + 1, high_index, search_val) 
+
