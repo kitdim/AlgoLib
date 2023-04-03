@@ -8,7 +8,8 @@ while True:
     print(
         "1. Linear search algorithm.\n" +
         "2. Recursive linear search algorithm.\n" +
-        "3. Binary search algorithm.")
+        "3. Binary search algorithm.\n" +
+        "4. Binary search using recursion.")
     input_algo = int(input("Enter: "))
 
     if (input_algo == 1):
@@ -32,6 +33,16 @@ while True:
         search_val = random.randint(1, 50)
         print(f"Need search: {search_val}")
         print(search.BinarySearch(lst, search_val))
+
+    elif (input_algo == 4):
+        lst = range(21)
+        low_index = lst[0]
+        high_index = lst[-1]
+        search_val = random.randint(-20, 50)
+        print(*lst)
+        print(f"Need search: {search_val}")
+        print(search.BinarySearchRec(lst, low_index, high_index, search_val))
+
     else:
         print("Not yet.")
         quit()
