@@ -30,7 +30,7 @@ if (!empty($_POST)) {
             echo "<br/>Ищем линейно-рекурсивным поиском в неосортированном массиве: $searchValue<br/>";
             foreach ($arr as $el) echo "$el ";
 
-            echo "<br />Индекс: {$index} <br />";
+            echo "<br />Индекс:$index <br />";
             echo SearchLib::RecursLinearSearch($arr, $count - 1, $index, $searchValue);
             exit();
 
@@ -58,6 +58,20 @@ if (!empty($_POST)) {
 
             echo SearchLib::BinaryFunctionRec($arrBinaryRec, $lowIndexRec, $highIndexRec, $searchValueBinaryRec);
             exit();
+        case 5:
+            $arrSort = [];
+            for ($i = 0; $i < 10; $i++)
+                $arrSort[$i] = rand(-100, 100);
+            echo "Сортировка выбором<br/>";
+
+            echo "До сортировки:<br/>";
+            foreach ($arrSort as $el) echo "$el ";
+
+            echo "<br/>После сортировки:<br/>";
+            $arrSort = SearchLib::SelectionSort($arrSort);
+            foreach ($arrSort as $el) echo "$el ";
+            exit();
+
         default:
             echo "Не готово";
             exit();
