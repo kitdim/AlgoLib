@@ -66,4 +66,28 @@ class SearchLib
                 return self::BinaryFunctionRec($arr, $lowIndex + 1, $highIndex, $searchValue);
         }
     }
+
+    static function SelectionSort(array $arr): array
+    {
+        $size = count($arr);
+        if($size == 1)
+            return $arr;
+        for ($i = 0; $i < $size - 1; $i++)
+        {
+            $smallest = $i;
+            for ($j = $i + 1; $j < $size; $j++)
+                if ($arr[$j] < $arr[$smallest])
+                    $smallest = $j;
+
+            $foo = $arr[$i];
+            $arr[$i] = $arr[$smallest];
+            $arr[$smallest] = $foo;
+            /* Ниже производительность. процессору гораздо удобнее просто начать брать значение из другого места,
+            чем терять время на перекладывание значений из одного куска памяти в другой, и обратно.
+            $arr[$j] += +$arr[$smallest] - $arr[$smallest] = $arr[$j];
+            */
+        }
+
+        return $arr;
+    }
 }
