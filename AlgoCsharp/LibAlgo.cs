@@ -9,7 +9,7 @@
 
         for (; arr[i] != searchVal;)
         {
-            i+=1;
+            i += 1;
         }
 
         arr[count] = lastElement;
@@ -49,7 +49,7 @@
             var midIndex = (lowIndex + highIndex) / 2;
             var guess = list[midIndex];
 
-            if (guess == item) 
+            if (guess == item)
                 return $"Succses.";
 
             if (guess > item)
@@ -58,5 +58,24 @@
                 lowIndex = midIndex + 1;
         }
         return "Not found";
+    }
+    public static string BinarySearchRec(
+        IList<int> list, int lowIndex,
+        int highIndex, int searchItem)
+    {
+        if (lowIndex >= highIndex)
+            return "\nNot found";
+        else
+        {
+            var middleIndex = (lowIndex + highIndex) / 2;
+            var guess = list[middleIndex];
+
+            if (guess == searchItem)
+                return "\nFound";
+            else if (guess > searchItem)
+                return BinarySearchRec(list, lowIndex, highIndex - 1, searchItem);
+            else
+                return BinarySearchRec(list, lowIndex + 1, highIndex, searchItem);
+        }
     }
 }
