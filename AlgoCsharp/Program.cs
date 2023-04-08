@@ -1,44 +1,47 @@
-﻿
+﻿using static System.Console;
 class Program
 {
     static void Main()
     {
         while (true)
         {
-            Console.SetCursorPosition(30, 0);
-            Console.WriteLine("Алгоритмы поиска: ");
-            Console.SetCursorPosition(30, 1);
-            Console.WriteLine("1. Линейный поиск");
-            Console.SetCursorPosition(30, 2);
-            Console.WriteLine("2. Рекурсивно-линейный поиск");
-            Console.SetCursorPosition(30, 3);
-            Console.WriteLine("3. Бинарный поиск (в отсортированном массиве)");
+            SetCursorPosition(35, 0);
+            WriteLine("Алгоритмы поиска: ");
+            SetCursorPosition(35, 1);
+            WriteLine("1. Линейный поиск");
+            SetCursorPosition(35, 2);
+            WriteLine("2. Линейный поиск через рекурсию");
+            SetCursorPosition(35, 3);
+            WriteLine("3. Бинарный поиск (в отсортированном массиве)");
+            SetCursorPosition(35, 4);
+            WriteLine("4. Бинарный поиск через рекурсию (в отсортированном массиве)");
 
-            Console.SetCursorPosition(0, 0);
-            Console.Write("Выберите нужный алгоритм: ");
-            var input = Convert.ToInt32(Console.ReadLine());
 
-            Console.SetCursorPosition(0, 5);
+            SetCursorPosition(0, 0);
+            Write("Выберите нужный алгоритм: ");
+            var input = Convert.ToInt32(ReadLine());
+
+            SetCursorPosition(0, 10);
             switch (input)
             {
+                #region Линейный поиск
                 case 1:
-                    #region Линейный поиск
                     Double[] arrLinear = new Double[10];
                     Random randomLinear = new Random();
                     Int32 countLinear = arrLinear.Length;
 
                     for (int i = 0; i < arrLinear.Length; i++) arrLinear[i] = randomLinear.Next(-100, 100);
-                    foreach (Double elem in arrLinear) Console.Write($"{elem} ");
+                    foreach (Double elem in arrLinear) Write($"{elem} ");
 
-                    Console.Write("\nEnter the number: ");
-                    Double seachValLinear = double.Parse(Console.ReadLine());
+                    Write("\nEnter the number: ");
+                    Double seachValLinear = double.Parse(ReadLine());
 
-                    Console.WriteLine(SeachLib.LineSeaching(arrLinear, countLinear - 1, seachValLinear));
+                    WriteLine(SeachLib.LineSeaching(arrLinear, countLinear - 1, seachValLinear));
                     break;
                 #endregion
 
+                #region Рекурсивно-линейный поиск
                 case 2:
-                    #region Рекурсивно-линейный поиск
                     Double[] arrLinearRec = new Double[10];
                     Random randomLinearRec = new Random();
                     Int32 countLinearRec = arrLinearRec.Length;
@@ -48,40 +51,63 @@ class Program
                         arrLinearRec[i] = randomLinearRec.Next(-100, 100);
 
                     foreach (Double elem in arrLinearRec)
-                        Console.Write($"{elem} ");
+                        Write($"{elem} ");
 
-                    Console.Write("\nEnter the value: ");
-                    var seachValRec = double.Parse(Console.ReadLine());
+                    Write("\nEnter the value: ");
+                    var seachValRec = double.Parse(ReadLine());
 
 
-                    Console.WriteLine(SeachLib.RecursiveLinearSearching(arrLinearRec, countLinearRec - 1, index, seachValRec));
+                    WriteLine(SeachLib.RecursiveLinearSearching(arrLinearRec, countLinearRec - 1, index, seachValRec));
                     break;
                 #endregion
 
+                #region Бинарный поиск
                 case 3:
-                    #region Бинарный поиск
                     List<int> arrBinary = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
 
                     foreach (var elem in arrBinary)
                     {
-                        Console.Write($"{elem} ");
+                        Write($"{elem} ");
                     }
 
-                    Console.Write("\nВведите число: ");
-                    var seachValBinary = Convert.ToInt32(Console.ReadLine());
+                    Write("\nВведите число: ");
+                    var seachValBinary = Convert.ToInt32(ReadLine());
 
-                    Console.WriteLine(SeachLib.BinarySearch(arrBinary, seachValBinary));
+                    WriteLine(SeachLib.BinarySearch(arrBinary, seachValBinary));
                     break;
+                #endregion
+
+                #region Бинарный поиск через рекурсию
+                case 4:
+
+                    var listBinarySearch = Enumerable.Range(1, 20).ToList<int>();
+                    var rnb = new Random();
+                    var searchItemRec = rnb.Next(50);
+                    var highIndex = listBinarySearch.Count();
+                    var lowIndex = listBinarySearch[0];
+
+                    WriteLine("Ищем: {0}\nКоличество элементов: {1}",
+                    searchItemRec, listBinarySearch.Count());
+                    WriteLine("Список в котором осуществляем поиск: ");
+                    foreach (var x in listBinarySearch)
+                        Write(x + " ");
+
+                    WriteLine(SeachLib.BinarySearchRec(listBinarySearch, lowIndex,
+                    highIndex, searchItemRec));
+
+                    break;
+                #endregion
+
                 default:
-                    Console.WriteLine("Не найдено такого алгоритма.");
+                    WriteLine("Не найдено такого алгоритма.");
                     break;
-                    #endregion
             }
 
-            Console.ReadKey();
-            Console.Clear();
+            ReadKey();
+            Clear();
         }
 
     }
 }
+// listBinarySearch = Enumerable.Repeat(0, 20).Select(x => rnb.Next(-50, 50)).ToList<int>();
