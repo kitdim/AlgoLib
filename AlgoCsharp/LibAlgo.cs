@@ -78,4 +78,30 @@
                 return BinarySearchRec(list, lowIndex + 1, highIndex, searchItem);
         }
     }
+
+    public static List<int> SelectionSort(List<int> list)
+    {
+        int size = list.Count();
+        if (size > 1)
+        {
+            for (int i = 0; i < size - 1; i++)
+            {
+                int smallest = i;
+                for (int j = i + 1; j < size; j++)
+                {
+                    if (list[j] < list[smallest])
+                    {
+                        smallest = j;
+                    }
+                }
+                (list[smallest], list[i])=(list[i], list[smallest]);
+            }
+            return list;
+        }
+        else
+        {
+            return list;
+        }
+
+    }
 }
