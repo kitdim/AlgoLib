@@ -1,4 +1,4 @@
-import random
+from random import *
 import os
 from Lib import *
 
@@ -9,7 +9,9 @@ while True:
         "1. Linear search algorithm.\n" +
         "2. Recursive linear search algorithm.\n" +
         "3. Binary search algorithm.\n" +
-        "4. Binary search using recursion.")
+        "4. Binary search using recursion.\n" +
+        "5. Selection sorting.")
+
     input_algo = int(input("Enter: "))
 
     if (input_algo == 1):
@@ -42,6 +44,15 @@ while True:
         print(*lst)
         print(f"Need search: {search_val}")
         print(search.BinarySearchRec(lst, low_index, high_index, search_val))
+
+    elif (input_algo == 5):
+        lst = [randint(-10, 10) for i in range(20)]
+
+        print("Before sort:")
+        print(*lst)
+        search.selection_sort(lst)
+        print("After sort:")
+        print(*lst)
 
     else:
         print("Not yet.")
