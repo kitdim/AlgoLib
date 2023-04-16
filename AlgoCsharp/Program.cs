@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using static System.Console;
+using AlgoCsharp;
 class Program
 {
     static void Main()
@@ -7,23 +8,29 @@ class Program
 
         while (true)
         {
+            ForegroundColor = ConsoleColor.Green;
+
+            //TODO Выделить перечень алгоритмов в отдельный текстовый файл, считывать его и выводить
             #region Перечень алгоритмов
             SetCursorPosition(35, 0);
             WriteLine("Алгоритмы поиска: ");
             SetCursorPosition(35, 1);
-            WriteLine("1. Линейный поиск");
+            WriteLine("1. Линейный поиск.");
             SetCursorPosition(35, 2);
-            WriteLine("2. Линейный поиск через рекурсию");
+            WriteLine("2. Линейный поиск через рекурсию.");
             SetCursorPosition(35, 3);
-            WriteLine("3. Бинарный поиск (в отсортированном массиве)");
+            WriteLine("3. Бинарный поиск (в отсортированном массиве).");
             SetCursorPosition(35, 4);
-            WriteLine("4. Бинарный поиск через рекурсию (в отсортированном массиве)");
+            WriteLine("4. Бинарный поиск через рекурсию (в отсортированном массиве).");
             SetCursorPosition(35, 5);
             WriteLine("-------------------------------------------------------------");
             SetCursorPosition(35, 6);
             WriteLine("Алгоритмы сортировки");
             SetCursorPosition(35, 7);
             WriteLine("5. Сортировка выбором.");
+            SetCursorPosition(35, 8);
+            WriteLine("6. Сортировка вставкой.");
+            ResetColor();
             #endregion
 
             SetCursorPosition(0, 0);
@@ -33,6 +40,7 @@ class Program
             SetCursorPosition(0, 10);
             switch (input)
             {
+                // TODO сделать отдельный класс, который будет выводить и передовать нужные параметры в класс который реализует алгоритмы
                 #region Линейный поиск
                 case 1:
                     Double[] arrLinear = new Double[10];
@@ -45,7 +53,7 @@ class Program
                     Write("\nEnter the number: ");
                     Double seachValLinear = double.Parse(ReadLine() ?? "0");
 
-                    WriteLine(SeachLib.LineSeaching(arrLinear, countLinear - 1, seachValLinear));
+                    WriteLine(LibAlgo.LineSeaching(arrLinear, countLinear - 1, seachValLinear));
                     break;
                 #endregion
 
@@ -66,7 +74,7 @@ class Program
                     var seachValRec = double.Parse(ReadLine() ?? "0");
 
 
-                    WriteLine(SeachLib.RecursiveLinearSearching(arrLinearRec, countLinearRec - 1, index, seachValRec));
+                    WriteLine(LibAlgo.RecursiveLinearSearching(arrLinearRec, countLinearRec - 1, index, seachValRec));
                     break;
                 #endregion
 
@@ -83,7 +91,7 @@ class Program
                     Write("\nВведите число: ");
                     var seachValBinary = Convert.ToInt32(ReadLine());
 
-                    WriteLine(SeachLib.BinarySearch(arrBinary, seachValBinary));
+                    WriteLine(LibAlgo.BinarySearch(arrBinary, seachValBinary));
                     break;
                 #endregion
 
@@ -102,7 +110,7 @@ class Program
                     foreach (var x in listBinarySearch)
                         Write(x + " ");
 
-                    WriteLine(SeachLib.BinarySearchRec(listBinarySearch, lowIndex,
+                    WriteLine(LibAlgo.BinarySearchRec(listBinarySearch, lowIndex,
                     highIndex, searchItemRec));
 
                     break;
@@ -121,10 +129,13 @@ class Program
                         Write(item + " ");
 
                     WriteLine("\nСписок после сортировки:");
-                    listAfter = SeachLib.SelectionSort(listBefore);
+                    listAfter = LibAlgo.SelectionSort(listBefore);
                     foreach (var item in listAfter)
                         Write(item + " ");
 
+                    break;
+                case 6:
+                    RunAlgo.RunInsertSort();
                     break;
                 #endregion
 
@@ -140,4 +151,3 @@ class Program
 
     }
 }
-// listBinarySearch = Enumerable.Repeat(0, 20).Select(x => rnb.Next(-50, 50)).ToList<int>();
