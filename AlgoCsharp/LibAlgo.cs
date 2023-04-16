@@ -1,4 +1,4 @@
-﻿class SeachLib
+﻿class LibAlgo
 {
     public static string LineSeaching(Double[] arr, Int32 count, Double searchVal)
     {
@@ -94,7 +94,7 @@
                         smallest = j;
                     }
                 }
-                (list[smallest], list[i])=(list[i], list[smallest]);
+                (list[smallest], list[i]) = (list[i], list[smallest]);
             }
             return list;
         }
