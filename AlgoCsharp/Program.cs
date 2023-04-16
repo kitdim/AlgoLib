@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using static System.Console;
+using AlgoCsharp;
 class Program
 {
     static void Main()
@@ -132,6 +133,9 @@ class Program
                     foreach (var item in listAfter)
                         Write(item + " ");
 
+                    break;
+                case 6:
+                    RunAlgo.RunInsertSort();
                     break;
                 #endregion
 
