@@ -70,10 +70,9 @@ class SearchLib
     static function SelectionSort(array $arr): array
     {
         $size = count($arr);
-        if($size == 1)
+        if ($size <= 1)
             return $arr;
-        for ($i = 0; $i < $size - 1; $i++)
-        {
+        for ($i = 0; $i < $size - 1; $i++) {
             $smallest = $i;
             for ($j = $i + 1; $j < $size; $j++)
                 if ($arr[$j] < $arr[$smallest])
@@ -88,6 +87,24 @@ class SearchLib
             */
         }
 
+        return $arr;
+    }
+
+    static function InsertSor(array $arr): array
+    {
+        if (count($arr) <= 1)
+            return $arr;
+        for ($i = 1; $i < count($arr); $i++) {
+            $key = $arr[$i];
+            $j = $i - 1;
+            while (isset($arr[$j]) && $arr[$j] > $key)
+            {
+                $arr[$j + 1] = $arr[$j];
+                $arr[$j] = $key;
+                $j--;
+            }
+
+        }
         return $arr;
     }
 }
