@@ -71,7 +71,18 @@ if (!empty($_POST)) {
             $arrSort = SearchLib::SelectionSort($arrSort);
             foreach ($arrSort as $el) echo "$el ";
             exit();
+        case 6:
+            for ($i = 0; $i < 10; $i++)
+                $arrSort[$i] = rand(-100, 100);
+            echo "Сортировка выбором<br/>";
 
+            echo "До сортировки:<br/>";
+            foreach ($arrSort as $el) echo "$el ";
+
+            echo "<br/>После сортировки:<br/>";
+            $arrSort = SearchLib::InsertSor($arrSort);
+            foreach ($arrSort as $el) echo "$el ";
+            exit();
         default:
             echo "Не готово";
             exit();
