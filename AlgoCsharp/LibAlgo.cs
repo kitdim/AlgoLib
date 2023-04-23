@@ -108,7 +108,7 @@
         }
         public static List<int> InsertSort(List<int> list)
         {
-            if (list.Count() < 1)
+            if (list.Count() <= 1)
                 return list;
 
             int size = list.Count();
@@ -116,12 +116,12 @@
             {
                 int key = list[i];
                 int j = i - 1;
-                while (j > 0 && list[j] > key)
+                while (j >= 0 && list[j] > key)
                 {
                     list[j + 1] = list[j];
-                    j -= 1;
+                    list[j] = key;
+                    j--;
                 }
-                list[j + 1] = key;
             }
             return list;
         }
