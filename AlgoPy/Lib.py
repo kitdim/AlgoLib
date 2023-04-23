@@ -80,11 +80,12 @@ class SearchLib:
 
         else:
             return arr
+        # TODO первый элемент не сортируется
 
     def insert_sort(self, arr):
         """Сортировка вставкой"""
 
-        if (len(arr) < 1):
+        if (len(arr) <= 1):
             return arr
         size = len(arr)
 
@@ -92,9 +93,9 @@ class SearchLib:
             key = arr[i]
             j = i - 1
 
-            while j > 0 and arr[j] > key:
+            while j >= 0 and arr[j] > key:
                 arr[j + 1] = arr[j]
+                arr[j] = key
                 j -= 1
-            arr[j + 1] = key
 
         return arr
