@@ -1,7 +1,7 @@
 class SearchLib:
     def LinerSearch(self, arr, count, search_value):
         """Линейный поиск"""
-
+        
         last = arr[count]
         arr[count] = search_value
         index = 0
@@ -20,7 +20,7 @@ class SearchLib:
 
     def RecursLinearSearch(self, arr, count, index, search_value):
         """Линейный поиск с ипользование рекурсии"""
-
+        # TODO не работает
         result = "Not found"
         if (index > count):
             return result
@@ -34,7 +34,7 @@ class SearchLib:
 
     def BinarySearch(self, arr, search_value):
         """Бинарный поиск"""
-
+        # TODO не работает
         low_index, high_index = 0, len(arr) - 1
 
         while (low_index <= high_index):
@@ -52,7 +52,7 @@ class SearchLib:
 
     def BinarySearchRec(self, arr, low_index, high_index, search_val):
         """Бинарный поиск с использование рекурсии"""
-
+        # TODO не работает
         if (low_index > high_index):
             return "Not found"
         else:
@@ -80,7 +80,6 @@ class SearchLib:
 
         else:
             return arr
-        # TODO первый элемент не сортируется
 
     def insert_sort(self, arr):
         """Сортировка вставкой"""
