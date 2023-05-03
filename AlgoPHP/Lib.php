@@ -97,8 +97,7 @@ class SearchLib
         for ($i = 1; $i < count($arr); $i++) {
             $key = $arr[$i];
             $j = $i - 1;
-            while (isset($arr[$j]) && $arr[$j] > $key)
-            {
+            while (isset($arr[$j]) && $arr[$j] > $key) {
                 $arr[$j + 1] = $arr[$j];
                 $arr[$j] = $key;
                 $j--;
@@ -106,5 +105,23 @@ class SearchLib
 
         }
         return $arr;
+    }
+
+    static function MergeSort(array $array, int $start, int $end): array
+    {
+        if ($start >= $end)
+            return $array;
+
+        $middle = ($start + $end) / 2;
+        self::MergeSort($array, $start, $middle);
+        self::MergeSort($array, $middle + 1, $end);
+
+        $merge = function (array $array, int $start, int $middle, int $end)
+        {
+            echo "Pass";
+        };
+
+        $merge($array, $start, $middle, $end);
+        return ["0"];
     }
 }
