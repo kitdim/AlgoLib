@@ -43,17 +43,7 @@ class Program
                 // TODO сделать отдельный класс, который будет выводить и передовать нужные параметры в класс который реализует алгоритмы
                 #region Линейный поиск
                 case 1:
-                    Double[] arrLinear = new Double[10];
-                    Random randomLinear = new Random();
-                    Int32 countLinear = arrLinear.Length;
-
-                    for (int i = 0; i < arrLinear.Length; i++) arrLinear[i] = randomLinear.Next(-100, 100);
-                    foreach (Double elem in arrLinear) Write($"{elem} ");
-
-                    Write("\nEnter the number: ");
-                    Double seachValLinear = double.Parse(ReadLine() ?? "0");
-
-                    WriteLine(LibAlgo.LineSeaching(arrLinear, countLinear - 1, seachValLinear));
+                    RunAlgo.RunLineSearching();
                     break;
                 #endregion
 
@@ -134,6 +124,9 @@ class Program
                         Write(item + " ");
 
                     break;
+                #endregion
+
+                #region Сортировка вставкой
                 case 6:
                     RunAlgo.RunInsertSort();
                     break;
