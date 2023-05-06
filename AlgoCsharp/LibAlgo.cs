@@ -2,24 +2,27 @@
 {
     class LibAlgo
     {
-        public static string LineSeaching(Double[] arr, Int32 count, Double searchVal)
+        /// <summary>
+        /// Линейный поиск элемента в массиве
+        /// </summary>
+        /// <param name="arr">неотсортированный список</param>
+        /// <param name="count">количество элементов в списке</param>
+        /// <param name="searchVal">значение для поиска</param>
+        /// <returns></returns>
+        public static string LineSearching(int[] arr, int count, int searchVal)
         {
-            Double lastElement = arr[count];
+            var lastElement = arr[count];
+            var i = 0;
+            var result = "Не найдено";
             arr[count] = searchVal;
-            Int32 i = 0;
-            String result = "Not found";
 
-            for (; arr[i] != searchVal;)
-            {
-                i += 1;
-            }
+            while (arr[i] != searchVal)
+                i++;
 
             arr[count] = lastElement;
             if (i < count || arr[count] == searchVal)
-            {
-                result = $"Succses: {arr[i]}, index = {i}";
-                return result;
-            }
+                result = $"Найдено, позиция в списке: {i + 1}";
+
             return result;
         }
         public static string RecursiveLinearSearching(Double[] arr, Int32 count, Int32 index, Double searchVal)
