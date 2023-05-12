@@ -18,7 +18,7 @@ if (!empty($_POST)) {
             echo "<br/>Ищем линейным поиском в неосортированном массиве: $searchValue<br/>";
             foreach ($arr as $el) echo "$el ";
 
-            echo SearchLib::LinerSearch($arr, $count - 1, $searchValue);
+            echo AlgoritmsLibrary::LinerSearch($arr, $count - 1, $searchValue);
             exit();
 
         case 2:
@@ -31,7 +31,7 @@ if (!empty($_POST)) {
             foreach ($arr as $el) echo "$el ";
 
             echo "<br />Индекс:$index <br />";
-            echo SearchLib::RecursLinearSearch($arr, $count - 1, $index, $searchValue);
+            echo AlgoritmsLibrary::recurs_linear_search($arr, $count - 1, $index, $searchValue);
             exit();
 
         case 3:
@@ -43,7 +43,7 @@ if (!empty($_POST)) {
             echo sprintf("Размер массива %d<br/ >", $countBinary + 1);
             foreach ($arrBinary as $el) echo "$el ";
 
-            echo SearchLib::BinaryFunction($arrBinary, $countBinary, $searchValueBinary);
+            echo AlgoritmsLibrary::BinaryFunction($arrBinary, $countBinary, $searchValueBinary);
             exit();
         case 4:
             $arrBinaryRec = range(1, 20);
@@ -56,7 +56,7 @@ if (!empty($_POST)) {
             echo sprintf("Размер массива %d<br/ >", $countBinaryRec + 1);
             foreach ($arrBinaryRec as $el) echo "$el ";
 
-            echo SearchLib::BinaryFunctionRec($arrBinaryRec, $lowIndexRec, $highIndexRec, $searchValueBinaryRec);
+            echo AlgoritmsLibrary::BinaryFunctionRec($arrBinaryRec, $lowIndexRec, $highIndexRec, $searchValueBinaryRec);
             exit();
         case 5:
             $arrSort = [];
@@ -68,7 +68,7 @@ if (!empty($_POST)) {
             foreach ($arrSort as $el) echo "$el ";
 
             echo "<br/>После сортировки:<br/>";
-            $arrSort = SearchLib::SelectionSort($arrSort);
+            $arrSort = AlgoritmsLibrary::SelectionSort($arrSort);
             foreach ($arrSort as $el) echo "$el ";
             exit();
         case 6:
@@ -80,7 +80,7 @@ if (!empty($_POST)) {
             foreach ($arrSort as $el) echo "$el ";
 
             echo "<br/>После сортировки:<br/>";
-            $arrSort = SearchLib::InsertSor($arrSort);
+            $arrSort = AlgoritmsLibrary::InsertSor($arrSort);
             foreach ($arrSort as $el) echo "$el ";
             exit();
         default:

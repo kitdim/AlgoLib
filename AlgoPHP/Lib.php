@@ -1,6 +1,6 @@
 <?php
 
-class SearchLib
+class AlgoritmsLibrary
 {
     static function LinerSearch(array $arr, float $countArr, int $searchValue): string
     {
@@ -22,14 +22,14 @@ class SearchLib
         return $result;
     }
 
-    static function RecursLinearSearch(array $arr, float $countArr, int $index, float $searchValue): string
+    static function recurs_linear_search(array $arr, float $countArr, int $index, float $searchValue): string
     {
         if ($index > $countArr)
             return "<br />Not found";
         elseif ($index <= $countArr && $arr[$index] == $searchValue)
             return "Found: {$arr[$index]}, by array index {$index}";
         elseif ($index <= $countArr && $arr[$index] != $searchValue)
-            return self::RecursLinearSearch($arr, $countArr, $index + 1, $searchValue);
+            return self::recurs_linear_search($arr, $countArr, $index + 1, $searchValue);
         else
             return "<br />Not found";
 
