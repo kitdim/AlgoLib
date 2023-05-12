@@ -1,132 +1,144 @@
-﻿namespace AlgoCsharp
+﻿namespace AlgoCsharp;
+
+class LibAlgo
 {
-    class LibAlgo
+    /// <summary>
+    /// Линейный поиск элемента в массиве
+    /// </summary>
+    /// <param name="arr">неотсортированный массив</param>
+    /// <param name="count">количество элементов в массиве</param>
+    /// <param name="searchVal">значение для поиска</param>
+    /// <returns></returns>
+    public static string LineSearching(List<int> arr, int count, int searchVal)
     {
-        /// <summary>
-        /// Линейный поиск элемента в массиве
-        /// </summary>
-        /// <param name="arr">неотсортированный список</param>
-        /// <param name="count">количество элементов в списке</param>
-        /// <param name="searchVal">значение для поиска</param>
-        /// <returns></returns>
-        public static string LineSearching(int[] arr, int count, int searchVal)
+        var lastElement = arr[count];
+        var i = 0;
+        var result = "Не найдено";
+        arr[count] = searchVal;
+
+        while (arr[i] != searchVal)
         {
-            var lastElement = arr[count];
-            var i = 0;
-            var result = "Не найдено";
-            arr[count] = searchVal;
-
-            while (arr[i] != searchVal)
-                i++;
-
-            arr[count] = lastElement;
-            if (i < count || arr[count] == searchVal)
-                result = $"Найдено, позиция в списке: {i + 1}";
-
-            return result;
+            i++;
         }
-        public static string RecursiveLinearSearching(Double[] arr, Int32 count, Int32 index, Double searchVal)
-        {
-            String result = "Not found";
 
-            if (index > count)
-            {
-                return result;
-            }
-            else if (index <= count && arr[index] == searchVal)
-            {
-                result = $"Succses: {arr[index]}, index = {index}";
-                return result;
-            }
-            else if (index <= count && arr[index] != searchVal)
-            {
-                return RecursiveLinearSearching(arr, count, index + 1, searchVal);
-            }
-            return result;
+        arr[count] = lastElement;
+        if (i < count || arr[count] == searchVal)
+        {
+            result = $"Найдено, позиция в списке: {i + 1}";
         }
-        public static string BinarySearch(IList<int> list, int item)
+
+        return result;
+    }
+    
+    /// <summary>
+    /// Рекурсивный-линейный поиск элемента в массиве
+    /// </summary>
+    /// <param name="arr">неотсортированный массив</param>
+    /// <param name="count">количество элементов в массиве</param>
+    /// <param name="index">порядковый номер элемента</param>
+    /// <param name="searchVal">значение для поиска</param>
+    /// <returns></returns>
+    public static string RecursiveLinearSearching(List<int> arr, int count, int index, double searchVal)
+    {
+        if (index > count)
         {
-            var lowIndex = 0;
-            var highIndex = list.Count() - 1;
-
-            while (lowIndex <= highIndex)
-            {
-                var midIndex = (lowIndex + highIndex) / 2;
-                var guess = list[midIndex];
-
-                if (guess == item)
-                    return $"Succses.";
-
-                if (guess > item)
-                    highIndex = midIndex - 1;
-                else
-                    lowIndex = midIndex + 1;
-            }
             return "Not found";
         }
-        public static string BinarySearchRec(
-            IList<int> list, int lowIndex,
-            int highIndex, int searchItem)
-        {
-            if (lowIndex >= highIndex)
-                return "\nNot found";
-            else
-            {
-                var middleIndex = (lowIndex + highIndex) / 2;
-                var guess = list[middleIndex];
 
-                if (guess == searchItem)
-                    return "\nFound";
-                else if (guess > searchItem)
-                    return BinarySearchRec(list, lowIndex, highIndex - 1, searchItem);
-                else
-                    return BinarySearchRec(list, lowIndex + 1, highIndex, searchItem);
-            }
+        else if (index <= count && arr[index] == searchVal)
+        {
+            return $"Succses: {arr[index]}, index = {index}";
         }
 
-        public static List<int> SelectionSort(List<int> list)
+        else if (index <= count && arr[index] != searchVal)
         {
-            int size = list.Count();
-            if (size > 1)
+            return RecursiveLinearSearching(arr, count, index + 1, searchVal);
+        }
+
+        return "Not found";
+    }
+    public static string BinarySearch(List<int> list, int item)
+    {
+        var lowIndex = 0;
+        var highIndex = list.Count() - 1;
+
+        while (lowIndex <= highIndex)
+        {
+            var midIndex = (lowIndex + highIndex) / 2;
+            var guess = list[midIndex];
+
+            if (guess == item)
+                return $"Succses.";
+
+            if (guess > item)
+                highIndex = midIndex - 1;
+            else
+                lowIndex = midIndex + 1;
+        }
+        return "Not found";
+    }
+    public static string BinarySearchRec(
+        IList<int> list, int lowIndex,
+        int highIndex, int searchItem)
+    {
+        if (lowIndex >= highIndex)
+            return "\nNot found";
+        else
+        {
+            var middleIndex = (lowIndex + highIndex) / 2;
+            var guess = list[middleIndex];
+
+            if (guess == searchItem)
+                return "\nFound";
+            else if (guess > searchItem)
+                return BinarySearchRec(list, lowIndex, highIndex - 1, searchItem);
+            else
+                return BinarySearchRec(list, lowIndex + 1, highIndex, searchItem);
+        }
+    }
+
+    public static List<int> SelectionSort(List<int> list)
+    {
+        int size = list.Count();
+        if (size > 1)
+        {
+            for (int i = 0; i < size - 1; i++)
             {
-                for (int i = 0; i < size - 1; i++)
+                int smallest = i;
+                for (int j = i + 1; j < size; j++)
                 {
-                    int smallest = i;
-                    for (int j = i + 1; j < size; j++)
+                    if (list[j] < list[smallest])
                     {
-                        if (list[j] < list[smallest])
-                        {
-                            smallest = j;
-                        }
+                        smallest = j;
                     }
-                    (list[smallest], list[i]) = (list[i], list[smallest]);
                 }
-                return list;
-            }
-            else
-            {
-                return list;
-            }
-
-        }
-        public static List<int> InsertSort(List<int> list)
-        {
-            if (list.Count() <= 1)
-                return list;
-
-            int size = list.Count();
-            for (int i = 1; i < size; i++)
-            {
-                int key = list[i];
-                int j = i - 1;
-                while (j >= 0 && list[j] > key)
-                {
-                    list[j + 1] = list[j];
-                    list[j] = key;
-                    j--;
-                }
+                (list[smallest], list[i]) = (list[i], list[smallest]);
             }
             return list;
         }
+        else
+        {
+            return list;
+        }
+
+    }
+    public static List<int> InsertSort(List<int> list)
+    {
+        if (list.Count() <= 1)
+            return list;
+
+        int size = list.Count();
+        for (int i = 1; i < size; i++)
+        {
+            int key = list[i];
+            int j = i - 1;
+            while (j >= 0 && list[j] > key)
+            {
+                list[j + 1] = list[j];
+                list[j] = key;
+                j--;
+            }
+        }
+        return list;
     }
 }

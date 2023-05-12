@@ -1,49 +1,81 @@
 using static System.Console;
-namespace AlgoCsharp
+namespace AlgoCsharp;
+
+public static class RunAlgo
 {
-    public static class RunAlgo
+    /// <summary>
+    /// Запуск линейного поиска
+    /// </summary>
+    public static void RunLinearSearching()
     {
-        /// <summary>
-        /// Запуск линейного поиска
-        /// </summary>
-        public static void RunLineSearching()
+        var array = HelperFill();
+        var count = array.Count - 1;
+
+        foreach (var elem in array)
+            Write($"{elem} ");
+
+        Write("\nВведите число для поиска: ");
+        var search = int.Parse(ReadLine() ?? "0");
+        var result = LibAlgo.LineSearching(array, count, search);
+
+        ForegroundColor = result == "Not found" ? ConsoleColor.Red : ConsoleColor.Green;
+        WriteLine(result);
+        ResetColor();
+    }
+    /// <summary>
+    /// Запуск рекурсивного-линейного поиска элемента в массиве
+    /// </summary>
+    public static void RunRecursiveLinearSearching()
+    {
+        var array = HelperFill();
+        var count = array.Count - 1;
+        var index = 0;
+
+
+        foreach (var elem in array)
+            Write($"{elem} ");
+
+        Write("\nВведите число для поиска: ");
+        var search = int.Parse(ReadLine() ?? "0");
+        var result = LibAlgo.RecursiveLinearSearching(array, count, index, search);
+
+        ForegroundColor = result == "Not found" ? ConsoleColor.Red : ConsoleColor.Green;
+        WriteLine(result);
+        ResetColor();
+    }
+
+    /// <summary>
+    /// Запуск сортировки вставкой
+    /// </summary>
+    public static void RunInsertSort()
+    {
+        var list = HelperFill();
+
+        WriteLine("Список до сортировки:");
+        foreach (var item in list)
+            Write(item + " ");
+
+        WriteLine("\nСписок после сортировки:");
+        list = LibAlgo.InsertSort(list);
+        foreach (var item in list)
+            Write(item + " ");
+    }
+
+    /// <summary>
+    /// В зависимости от значение аргумента isSort, возвращает заполненный случайными 
+    /// или рандомными целыми числами список.
+    /// </summary>
+    /// <param name="isSort">нужно возвращать порядковый список или нет?</param>
+    /// <returns>Список целых чисел</returns>
+    private static List<int> HelperFill(bool isSort = false)
+    {
+        if (!isSort)
         {
-            var array = Enumerable.Repeat(0, 20)
-                        .Select(x => new Random()
-                        .Next(-50, 50))
-                        .ToArray();
-            var count = array.Length - 1;
-
-            foreach (var elem in array)
-                Write($"{elem} ");
-
-            Write("\nВведите число для поиска: ");
-            var search = int.Parse(ReadLine() ?? "0");
-            var result = LibAlgo.LineSearching(array, count, search);
-
-            ForegroundColor = result.Length > 15 ? ConsoleColor.Green : ConsoleColor.Red;
-            WriteLine(result);
-            ResetColor();
+            return Enumerable.Repeat(0, 20)
+                    .Select(x => new Random()
+                    .Next(-50, 50))
+                    .ToList();
         }
-
-        /// <summary>
-        /// Запуск сортировки вставкой
-        /// </summary>
-        public static void RunInsertSort()
-        {
-            var list = Enumerable.Repeat(0, 20)
-                        .Select(x => new Random()
-                        .Next(-50, 50))
-                        .ToList();
-
-            WriteLine("Список до сортировки:");
-            foreach (var item in list)
-                Write(item + " ");
-
-            WriteLine("\nСписок после сортировки:");
-            list = LibAlgo.InsertSort(list);
-            foreach (var item in list)
-                Write(item + " ");
-        }
+        return Enumerable.Range(1, 20).ToList<int>();
     }
 }

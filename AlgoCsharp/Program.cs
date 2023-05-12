@@ -43,28 +43,13 @@ class Program
                 // TODO сделать отдельный класс, который будет выводить и передовать нужные параметры в класс который реализует алгоритмы
                 #region Линейный поиск
                 case 1:
-                    RunAlgo.RunLineSearching();
+                    RunAlgo.RunLinearSearching();
                     break;
                 #endregion
 
                 #region Рекурсивно-линейный поиск
                 case 2:
-                    Double[] arrLinearRec = new Double[10];
-                    Random randomLinearRec = new Random();
-                    Int32 countLinearRec = arrLinearRec.Length;
-                    Int32 index = 0;
-
-                    for (int i = 0; i < arrLinearRec.Length; i++)
-                        arrLinearRec[i] = randomLinearRec.Next(-100, 100);
-
-                    foreach (Double elem in arrLinearRec)
-                        Write($"{elem} ");
-
-                    Write("\nEnter the value: ");
-                    var seachValRec = double.Parse(ReadLine() ?? "0");
-
-
-                    WriteLine(LibAlgo.RecursiveLinearSearching(arrLinearRec, countLinearRec - 1, index, seachValRec));
+                    RunAlgo.RunRecursiveLinearSearching();
                     break;
                 #endregion
 
