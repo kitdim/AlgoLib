@@ -1,8 +1,9 @@
 from random import *
 import os
-from Lib import *
+from Algorithms import *
 
-search = Algorithm()
+search = Algorithms()
+rnd = Random()
 
 while True:
     print(
@@ -14,7 +15,6 @@ while True:
         "6. Insert sort.")
 
     input_algo = int(input("Enter: "))
-    rnd = Random()
 
     if input_algo == 1:
         lst = [1, 6, 8, 2, -5, 8, 1, 10]

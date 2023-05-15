@@ -1,4 +1,4 @@
-class Algorithm:
+class Algorithms:
     def liner_search(self, arr, count, search_value):
         """Линейный поиск"""
         
