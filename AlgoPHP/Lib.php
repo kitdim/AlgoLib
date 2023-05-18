@@ -107,14 +107,14 @@ class AlgoritmsLibrary
         return $arr;
     }
 
-    static function MergeSort(array $array, int $start, int $end): array
+    static function mergeSort(array $array, int $start, int $end): array
     {
         if ($start >= $end)
             return $array;
 
         $middle = ($start + $end) / 2;
-        self::MergeSort($array, $start, $middle);
-        self::MergeSort($array, $middle + 1, $end);
+        self::mergeSort($array, $start, $middle);
+        self::mergeSort($array, $middle + 1, $end);
 
         $merge = function (array $array, int $start, int $middle, int $end)
         {
