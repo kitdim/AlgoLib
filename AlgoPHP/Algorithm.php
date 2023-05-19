@@ -1,6 +1,6 @@
 <?php
 
-class AlgoritmsLibrary
+class Algorithm
 {
     static function LinerSearch(array $arr, float $countArr, int $searchValue): string
     {
@@ -107,6 +107,7 @@ class AlgoritmsLibrary
         return $arr;
     }
 
+<<<<<<< HEAD:AlgoPHP/Lib.php
     static function mergeSort(array $array, int $start, int $end): array
     {
         if ($start >= $end)
@@ -117,11 +118,38 @@ class AlgoritmsLibrary
         self::mergeSort($array, $middle + 1, $end);
 
         $merge = function (array $array, int $start, int $middle, int $end)
+=======
+    static function mergeSort(array $array): array
+    {
+        $count = count($array);
+        if($count <= 1)
+>>>>>>> 5b0ad055356b5514b293d3a6362bd3f681a89caa:AlgoPHP/Algorithm.php
         {
-            echo "Pass";
+            return $array;
+        }
+        $left = @array_slice($array, 0, $count/2);
+        $right = @array_slice($array, $count/2);
+
+        $left = self::mergeSort($left);
+        $right = self::mergeSort($right);
+
+        $merge = function ($left, $right)
+        {
+            $ret = [];
+            while (count($left) > 0 && count($right) > 0) {
+                if ($left[0] < $right[0]) {
+                    array_push($ret, array_shift($left));
+                } else {
+                    array_push($ret, array_shift($right));
+                }
+            }
+
+            array_splice($ret, count($ret), 0, $left);
+            array_splice($ret, count($ret), 0, $right);
+
+            return $ret;
         };
 
-        $merge($array, $start, $middle, $end);
-        return ["0"];
+        return  $merge($left, $right);
     }
 }

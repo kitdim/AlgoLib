@@ -7,7 +7,7 @@
 <body>
 <?php
 if (!empty($_POST)) {
-    require_once 'Lib.php';
+    require_once 'Algorithm.php';
 
     switch ($_POST['num_algo']) {
         case 1:
@@ -18,7 +18,7 @@ if (!empty($_POST)) {
             echo "<br/>Ищем линейным поиском в неосортированном массиве: $searchValue<br/>";
             foreach ($arr as $el) echo "$el ";
 
-            echo AlgoritmsLibrary::LinerSearch($arr, $count - 1, $searchValue);
+            echo Algorithm::LinerSearch($arr, $count - 1, $searchValue);
             exit();
 
         case 2:
@@ -31,7 +31,7 @@ if (!empty($_POST)) {
             foreach ($arr as $el) echo "$el ";
 
             echo "<br />Индекс:$index <br />";
-            echo AlgoritmsLibrary::recurs_linear_search($arr, $count - 1, $index, $searchValue);
+            echo Algorithm::recurs_linear_search($arr, $count - 1, $index, $searchValue);
             exit();
 
         case 3:
@@ -43,7 +43,7 @@ if (!empty($_POST)) {
             echo sprintf("Размер массива %d<br/ >", $countBinary + 1);
             foreach ($arrBinary as $el) echo "$el ";
 
-            echo AlgoritmsLibrary::BinaryFunction($arrBinary, $countBinary, $searchValueBinary);
+            echo Algorithm::BinaryFunction($arrBinary, $countBinary, $searchValueBinary);
             exit();
         case 4:
             $arrBinaryRec = range(1, 20);
@@ -56,7 +56,7 @@ if (!empty($_POST)) {
             echo sprintf("Размер массива %d<br/ >", $countBinaryRec + 1);
             foreach ($arrBinaryRec as $el) echo "$el ";
 
-            echo AlgoritmsLibrary::BinaryFunctionRec($arrBinaryRec, $lowIndexRec, $highIndexRec, $searchValueBinaryRec);
+            echo Algorithm::BinaryFunctionRec($arrBinaryRec, $lowIndexRec, $highIndexRec, $searchValueBinaryRec);
             exit();
         case 5:
             $arrSort = [];
@@ -68,7 +68,7 @@ if (!empty($_POST)) {
             foreach ($arrSort as $el) echo "$el ";
 
             echo "<br/>После сортировки:<br/>";
-            $arrSort = AlgoritmsLibrary::SelectionSort($arrSort);
+            $arrSort = Algorithm::SelectionSort($arrSort);
             foreach ($arrSort as $el) echo "$el ";
             exit();
         case 6:
@@ -80,7 +80,19 @@ if (!empty($_POST)) {
             foreach ($arrSort as $el) echo "$el ";
 
             echo "<br/>После сортировки:<br/>";
-            $arrSort = AlgoritmsLibrary::InsertSor($arrSort);
+            $arrSort = Algorithm::InsertSor($arrSort);
+            foreach ($arrSort as $el) echo "$el ";
+            exit();
+        case 7:
+            for ($i = 0; $i < 10; $i++)
+                $arrSort[$i] = rand(-100, 100);
+            echo "Сортировка выбором<br/>";
+
+            echo "До сортировки:<br/>";
+            foreach ($arrSort as $el) echo "$el ";
+
+            echo "<br/>После сортировки:<br/>";
+            $arrSort = Algorithm::mergeSort($arrSort);
             foreach ($arrSort as $el) echo "$el ";
             exit();
         default:
