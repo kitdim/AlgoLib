@@ -106,24 +106,11 @@ class Algorithm
         }
         return $arr;
     }
-
-<<<<<<< HEAD:AlgoPHP/Lib.php
-    static function mergeSort(array $array, int $start, int $end): array
-    {
-        if ($start >= $end)
-            return $array;
-
-        $middle = ($start + $end) / 2;
-        self::mergeSort($array, $start, $middle);
-        self::mergeSort($array, $middle + 1, $end);
-
-        $merge = function (array $array, int $start, int $middle, int $end)
-=======
     static function mergeSort(array $array): array
     {
         $count = count($array);
         if($count <= 1)
->>>>>>> 5b0ad055356b5514b293d3a6362bd3f681a89caa:AlgoPHP/Algorithm.php
+
         {
             return $array;
         }
