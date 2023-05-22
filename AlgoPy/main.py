@@ -12,7 +12,8 @@ while True:
         "3. Binary search algorithm.\n" +
         "4. Binary search using recursion.\n" +
         "5. Selection sorting.\n" +
-        "6. Insert sort.")
+        "6. Insert sort.\n" +
+        "7. Merge sort.")
 
     input_algo = int(input("Enter: "))
 
@@ -60,6 +61,13 @@ while True:
         print("Before sort:")
         print(*lst)
         search.insert_sort(lst)
+        print("After sort:")
+        print(*lst)
+    elif input_algo == 7:
+        lst = [randint(-10, 10) for i in range(20)]
+        print("Before sort:")
+        print(*lst)
+        search.merge_sort(lst)
         print("After sort:")
         print(*lst)
     else:
