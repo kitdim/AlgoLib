@@ -30,6 +30,8 @@ class Program
             WriteLine("5. Сортировка выбором.");
             SetCursorPosition(35, 8);
             WriteLine("6. Сортировка вставкой.");
+            SetCursorPosition(35, 9);
+            WriteLine("7. Сортировка слиянием.");
             ResetColor();
             #endregion
 
@@ -114,6 +116,12 @@ class Program
                 #region Сортировка вставкой
                 case 6:
                     RunAlgo.RunInsertSort();
+                    break;
+                #endregion
+
+                #region Сортировка слиянием
+                case 7:
+                    RunAlgo.RunMergeSort();
                     break;
                 #endregion
 

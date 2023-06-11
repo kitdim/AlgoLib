@@ -29,7 +29,7 @@ class LibAlgo
 
         return result;
     }
-    
+
     /// <summary>
     /// Рекурсивный-линейный поиск элемента в массиве
     /// </summary>
@@ -141,4 +141,42 @@ class LibAlgo
         }
         return list;
     }
+    public static List<int> MergeSort(List<int> list)
+    {
+        var size = list.Count();
+        if (size <= 1)
+        {
+            return list;
+        }
+
+        var right = list.GetRange(0, size / 2);
+        var left = list.GetRange(size / 2, list[-1]);
+
+        right = MergeSort(right);
+        left = MergeSort(left);
+
+
+        Merge merge = (List<int> right, List<int> left) =>
+        {
+            List<int> mergeList = new();
+            while (right.Count > 0 && left.Count > 0)
+            {
+                if (right[0] > left[0])
+                {
+                    mergeList.Add(right[0]);
+                    right.RemoveAt(0);
+                }
+                else
+                {
+                    mergeList.Add(left[0]);
+                    left.RemoveAt(0);
+                }
+            }
+            return mergeList;
+        };
+
+        return merge(right, left);
+    }
+    delegate List<int> Merge(List<int> right, List<int> left);
 }
+

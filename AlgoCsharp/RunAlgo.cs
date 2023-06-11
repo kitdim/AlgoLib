@@ -61,6 +61,24 @@ public static class RunAlgo
             Write(item + " ");
     }
 
+    public static void RunMergeSort()
+    {
+        var list = HelperFill();
+
+        WriteLine("Список до сортировки:");
+        foreach (var item in list)
+        {
+            Write(item + " ");
+        }
+
+        WriteLine("\nСписок после сортировки:");
+        list = LibAlgo.MergeSort(list);
+        foreach (var item in list)
+        {
+            Write(item + " ");
+        }
+    }
+
     /// <summary>
     /// В зависимости от значение аргумента isSort, возвращает заполненный случайными 
     /// или рандомными целыми числами список.
