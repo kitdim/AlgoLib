@@ -132,3 +132,30 @@ class Algorithms:
             k += 1
 
         return arr
+
+    def quick_sort(self, arr, fst, lst):
+        """Быстрая сортировка"""
+
+        if lst - fst > 1:
+            q = self.partition(arr, fst, lst)
+            self.quick_sort(arr, fst, q)
+            self.quick_sort(arr, q + 1, lst)
+
+    def partition(self, arr, fst, lst):
+        """Перестановка элементов"""
+
+        pivot = arr[fst]
+        i = fst + 1
+        j = lst - 1
+
+        while True:
+            while i <= j and arr[i] <= pivot:
+                i = i + 1
+            while i <= j and arr[j] >= pivot:
+                j = j - 1
+
+            if i <= j:
+                arr[i], arr[j] = arr[j], arr[i]
+            else:
+                arr[fst], arr[j] = arr[j], arr[fst]
+                return j
