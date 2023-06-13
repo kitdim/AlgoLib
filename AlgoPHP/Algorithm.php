@@ -139,4 +139,47 @@ class Algorithm
 
         return  $merge($left, $right);
     }
+
+    static function QuickSort(array $array, $fst, $lst) : array
+    {
+        $partition = function (array $array, $fst, $lst) {
+            $pivot = $array[$fst];
+            $i = $fst + 1;
+            $j = $lst + 1;
+
+            while(true)
+            {
+                while($i <= $j && $array[$i] <= $pivot)
+                {
+                    $i += 1;
+                }
+                while($i <= $j && $array[$i] >= $pivot)
+                {
+                    $j -= 1;
+                }
+
+                if ($i <= $j)
+                {
+                    $foo = $array[$i];
+                    $array[$i] = $array[$j];
+                    $array[$j] = $foo;
+                }
+                else
+                {
+                    $foo = $array[$fst];
+                    $array[$fst] = $array[$j];
+                    $array[$j] = $foo;
+                    return $j;
+                }
+            }
+        };
+
+        if ($lst - $fst > 1)
+        {
+            $q = $partition($array, $fst, $lst);
+            self::QuickSort($array, $fst, $q);
+            self::QuickSort($array, $q + 1, $lst);
+        }
+        return $array;
+    }
 }
