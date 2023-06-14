@@ -98,14 +98,14 @@ if (!empty($_POST)) {
 
         case 8:
             for ($i = 0; $i < 10; $i++)
-            $arrSort[$i] = rand(-100, 100);
+                $arrSort[$i] = rand(-100, 100);
             echo "Быстрая сортировка<br/>";
 
             echo "До сортировки:<br/>";
             foreach ($arrSort as $el) echo "$el ";
 
             echo "<br/>После сортировки:<br/>";
-            $arrSort = Algorithm::QuickSort($arrSort, $arrSort[0], $arrSort[-1]);
+            Algorithm::QuickSort($arrSort, 0, count($arrSort) - 1);
             foreach ($arrSort as $el) echo "$el ";
             exit();
 
