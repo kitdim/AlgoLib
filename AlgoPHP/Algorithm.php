@@ -139,4 +139,44 @@ class Algorithm
 
         return  $merge($left, $right);
     }
+
+    static function QuickSort(array &$array, $fst, $lst)
+    {
+        $i = $fst;
+        $j = $lst;
+
+        $middle = @$array[($fst + $lst) / 2];
+        do
+        {
+            while($array[$i] < $middle)
+            {
+                ++$i;
+            }
+            while($array[$j] > $middle)
+            {
+                --$j;
+            }
+            if($i <= $j)
+            {
+                $temp = $array[$i];
+                $array[$i] = $array[$j];
+                $array[$j] = $temp;
+
+                $i++;
+                $j--;
+            }
+        }
+
+        while($i < $j);
+
+        if($fst < $j){
+          // рекурсивно вызываем сортировку для левой части
+          self::QuickSort($array, $fst, $j);
+        } 
+
+        if($i < $lst){
+          // рекурсивно вызываем сортировку для правой части
+          self::QuickSort($array, $i, $lst);
+        } 
+    }
 }

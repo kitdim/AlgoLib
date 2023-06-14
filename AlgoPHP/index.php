@@ -86,7 +86,7 @@ if (!empty($_POST)) {
         case 7:
             for ($i = 0; $i < 10; $i++)
                 $arrSort[$i] = rand(-100, 100);
-            echo "Сортировка выбором<br/>";
+            echo "Сортировка слиянием<br/>";
 
             echo "До сортировки:<br/>";
             foreach ($arrSort as $el) echo "$el ";
@@ -95,6 +95,20 @@ if (!empty($_POST)) {
             $arrSort = Algorithm::mergeSort($arrSort);
             foreach ($arrSort as $el) echo "$el ";
             exit();
+
+        case 8:
+            for ($i = 0; $i < 10; $i++)
+                $arrSort[$i] = rand(-100, 100);
+            echo "Быстрая сортировка<br/>";
+
+            echo "До сортировки:<br/>";
+            foreach ($arrSort as $el) echo "$el ";
+
+            echo "<br/>После сортировки:<br/>";
+            Algorithm::QuickSort($arrSort, 0, count($arrSort) - 1);
+            foreach ($arrSort as $el) echo "$el ";
+            exit();
+
         default:
             echo "Не готово";
             exit();
