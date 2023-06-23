@@ -72,7 +72,8 @@ public static class RunAlgo
         }
 
         WriteLine("\nСписок после сортировки:");
-        list = LibAlgo.MergeSort(list);
+
+        LibAlgo.MergeSort(list, 0, list.Count - 1);
         foreach (var item in list)
         {
             Write(item + " ");

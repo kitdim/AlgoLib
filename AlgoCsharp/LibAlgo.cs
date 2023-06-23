@@ -141,42 +141,61 @@ class LibAlgo
         }
         return list;
     }
-    public static List<int> MergeSort(List<int> list)
+    public static void MergeSort(List<int> list, int left, int right)
     {
-        var size = list.Count();
-        if (size <= 1)
+        if (left < right)
         {
-            return list;
-        }
+            int middle = left + (right - left) / 2;
 
-        var right = list.GetRange(0, size / 2);
-        var left = list.GetRange(size / 2, list[-1]);
+            MergeSort(list, left, middle);
+            MergeSort(list, middle + 1, right);
 
-        right = MergeSort(right);
-        left = MergeSort(left);
-
-
-        Merge merge = (List<int> right, List<int> left) =>
-        {
-            List<int> mergeList = new();
-            while (right.Count > 0 && left.Count > 0)
+            Merge merge = delegate (List<int> list, int left, int middle, int right)
             {
-                if (right[0] > left[0])
-                {
-                    mergeList.Add(right[0]);
-                    right.RemoveAt(0);
-                }
-                else
-                {
-                    mergeList.Add(left[0]);
-                    left.RemoveAt(0);
-                }
-            }
-            return mergeList;
-        };
 
-        return merge(right, left);
+                var leftArrayLength = middle - left + 1;
+                var rightArrayLength = right - middle;
+                var leftTempArray = new int[leftArrayLength];
+                var rightTempArray = new int[rightArrayLength];
+                int i, j;
+
+                for (i = 0; i < leftArrayLength; ++i)
+                {
+                    leftTempArray[i] = list[left + i];
+                }
+                for (j = 0; j < rightArrayLength; ++j)
+                {
+                    rightTempArray[j] = list[middle + 1 + j];
+                }
+
+                i = 0;
+                j = 0;
+                int k = left;
+
+                while (i < leftArrayLength && j < rightArrayLength)
+                {
+                    if (leftTempArray[i] <= rightTempArray[j])
+                    {
+                        list[k++] = leftTempArray[i++];
+                    }
+                    else
+                    {
+                        list[k++] = rightTempArray[j++];
+                    }
+                }
+
+                while (i < leftArrayLength)
+                {
+                    list[k++] = leftTempArray[i++];
+                }
+                while (j < rightArrayLength)
+                {
+                    list[k++] = rightTempArray[j++];
+                }
+            };
+            merge(list, left, middle, right);
+        }
     }
-    delegate List<int> Merge(List<int> right, List<int> left);
+    delegate void Merge(List<int> list, int left, int middle, int right);
 }
 
