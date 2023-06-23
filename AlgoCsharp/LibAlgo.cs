@@ -29,7 +29,7 @@ class LibAlgo
 
         return result;
     }
-    
+
     /// <summary>
     /// Рекурсивный-линейный поиск элемента в массиве
     /// </summary>
@@ -141,4 +141,61 @@ class LibAlgo
         }
         return list;
     }
+    public static void MergeSort(List<int> list, int left, int right)
+    {
+        if (left < right)
+        {
+            int middle = left + (right - left) / 2;
+
+            MergeSort(list, left, middle);
+            MergeSort(list, middle + 1, right);
+
+            Merge merge = delegate (List<int> list, int left, int middle, int right)
+            {
+
+                var leftArrayLength = middle - left + 1;
+                var rightArrayLength = right - middle;
+                var leftTempArray = new int[leftArrayLength];
+                var rightTempArray = new int[rightArrayLength];
+                int i, j;
+
+                for (i = 0; i < leftArrayLength; ++i)
+                {
+                    leftTempArray[i] = list[left + i];
+                }
+                for (j = 0; j < rightArrayLength; ++j)
+                {
+                    rightTempArray[j] = list[middle + 1 + j];
+                }
+
+                i = 0;
+                j = 0;
+                int k = left;
+
+                while (i < leftArrayLength && j < rightArrayLength)
+                {
+                    if (leftTempArray[i] <= rightTempArray[j])
+                    {
+                        list[k++] = leftTempArray[i++];
+                    }
+                    else
+                    {
+                        list[k++] = rightTempArray[j++];
+                    }
+                }
+
+                while (i < leftArrayLength)
+                {
+                    list[k++] = leftTempArray[i++];
+                }
+                while (j < rightArrayLength)
+                {
+                    list[k++] = rightTempArray[j++];
+                }
+            };
+            merge(list, left, middle, right);
+        }
+    }
+    delegate void Merge(List<int> list, int left, int middle, int right);
 }
+
