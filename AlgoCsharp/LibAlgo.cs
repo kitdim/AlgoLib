@@ -29,7 +29,6 @@ class LibAlgo
 
         return result;
     }
-
     /// <summary>
     /// Рекурсивный-линейный поиск элемента в массиве
     /// </summary>
@@ -196,6 +195,44 @@ class LibAlgo
             merge(list, left, middle, right);
         }
     }
+    public static void QuickSort(List<int> list, int first, int last)
+    {
+        var i = first;
+        var j = last;
+
+        var middle = list[(first + last) / 2];
+
+        do
+        {
+            while (list[i] < middle)
+            {
+                ++i;
+            }
+            while (list[j] > middle)
+            {
+                --j;
+            }
+
+            if (i <= j)
+            {
+                (list[i], list[j]) = (list[j], list[i]);
+
+                i++;
+                j--;
+            }
+        }
+        while (i < j);
+
+        if (first < j)
+        {
+            QuickSort(list, first, j);
+        }
+        if (i < last)
+        {
+            QuickSort(list, i, last);
+        }
+    }
+
     delegate void Merge(List<int> list, int left, int middle, int right);
 }
 
