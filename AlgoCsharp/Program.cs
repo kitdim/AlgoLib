@@ -32,6 +32,8 @@ class Program
             WriteLine("6. Сортировка вставкой.");
             SetCursorPosition(35, 9);
             WriteLine("7. Сортировка слиянием.");
+            SetCursorPosition(35, 10);
+            WriteLine("8. Быстрая сортировка.");
             ResetColor();
             #endregion
 
@@ -39,7 +41,7 @@ class Program
             Write("Выберите нужный алгоритм: ");
             var input = Convert.ToInt32(ReadLine());
 
-            SetCursorPosition(0, 10);
+            SetCursorPosition(0, 15);
             switch (input)
             {
                 // TODO сделать отдельный класс, который будет выводить и передовать нужные параметры в класс который реализует алгоритмы
@@ -125,6 +127,11 @@ class Program
                     break;
                 #endregion
 
+                #region Быстрая сортировка
+                case 8:
+                    RunAlgo.RunQuickSort();
+                    break;
+                #endregion
                 default:
                     WriteLine("Не найдено такого алгоритма.");
                     break;

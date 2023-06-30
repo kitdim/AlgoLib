@@ -80,6 +80,24 @@ public static class RunAlgo
         }
     }
 
+    public static void RunQuickSort()
+    {
+        var list = HelperFill();
+
+        WriteLine("Список до сортировки:");
+        foreach (var item in list)
+        {
+            Write(item + " ");
+        }
+
+        WriteLine("\nСписок после сортировки:");
+
+        LibAlgo.QuickSort(list, 0, list.Count - 1);
+        foreach (var item in list)
+        {
+            Write(item + " ");
+        }
+    }
     /// <summary>
     /// В зависимости от значение аргумента isSort, возвращает заполненный случайными 
     /// или рандомными целыми числами список.
@@ -97,4 +115,5 @@ public static class RunAlgo
         }
         return Enumerable.Range(1, 20).ToList<int>();
     }
+
 }
